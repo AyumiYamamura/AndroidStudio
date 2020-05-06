@@ -129,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
 
         // ダイアログを作成
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(alertTitle);  // 正解or不正解を表示
-        builder.setMessage("答え : " + rightAnswer);  // 正答を表示
+        builder.setTitle(alertTitle);
+        builder.setMessage("答え : " + rightAnswer);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
