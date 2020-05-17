@@ -3,6 +3,7 @@ package com.example.myapplication1;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -136,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (quizCount == QUIZ_COUNT) {
                     // 結果画面へ移動
+                    Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+                    intent.putExtra("RIGHT_ANSWER_COUNT", rightAnswerCount);
+                    startActivity(intent);
                 } else {
                     quizCount++;
                     showNextQuiz();
