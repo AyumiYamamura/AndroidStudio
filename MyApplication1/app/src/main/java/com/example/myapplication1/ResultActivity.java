@@ -39,7 +39,8 @@ public class ResultActivity extends AppCompatActivity {
         editor.apply();
     }
     public void returnTop(View view) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+       // Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), TopActivity.class);
         startActivity(intent);
     }
 
