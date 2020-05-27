@@ -1,7 +1,9 @@
 package com.example.simplememo;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -101,6 +103,51 @@ public class CreateMemo extends AppCompatActivity {
                 // 保存後に一覧へ戻る
                 Intent intent = new Intent(CreateMemo.this, com.example.simplememo.MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        /**
+         * 削除ボタン処理
+         */
+        // idがdeleteのボタンを取得
+        Button deleteButton = (Button) findViewById(R.id.delete);
+
+        // clickイベント追加
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // 削除時のアラートダイアログを作成
+                AlertDialog.Builder builder = new AlertDialog.Builder(CreateMemo.this);
+                //builder.setTitle(alertTitle);
+                builder.setTitle("削除しますか？");
+                //builder.setMessage("削除しますか？" );
+                builder.setIcon(R.drawable.alert);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // データベースから削除する
+                        SQLiteDatabase db = helper.getWritableDatabase();
+                        db.execSQL("delete from MEMO_TABLE  where uuid = '"+id+"'");
+                        db.close();
+
+                        // 削除後に一覧へ戻る
+                        Intent intent = new Intent(CreateMemo.this, com.example.simplememo.MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("戻る", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.setCancelable(true);
+                builder.show();
+
+
             }
         });
 
