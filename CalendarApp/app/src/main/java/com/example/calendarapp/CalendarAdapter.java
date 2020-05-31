@@ -33,5 +33,20 @@ public class CalendarAdapter extends BaseAdapter {
         dateArray = mDateManager.getDays();
     }
 
+    @Override
+    public int getCount(){
+        return dateArray.size();
+    }
 
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+        if (convertView == null) {
+            convertView = mLayoutInflater.inflate(R.layout.calendar_cell, null);
+            holder = new ViewHolder();
+            holder.dateText = convertView.findViewById(R.id.dateText);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder)convertView.getTag();
+        }
 }
