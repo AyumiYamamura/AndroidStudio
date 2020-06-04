@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -64,7 +66,7 @@ public class CalendarAdapter extends BaseAdapter {
         if(mDateManager.isCurrentMonth(dateArray.get(position))){
             convertView.setBackgroundColor(Color.WHITE);
         }else{
-            convertView.setBackgroundColor(Color.GRAY);
+            convertView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.grayColor));
         }
 
         //日曜日を赤、土曜日を青に

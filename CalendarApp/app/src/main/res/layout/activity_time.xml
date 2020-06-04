@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/grayColor"
+    tools:context=".TimeActivity"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal"
+        android:text="時間を選択してください"
+        android:textColor="@color/blueColor"
+        android:textAlignment="center"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/dateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="date"
+        android:textAlignment="center"
+        android:textSize="22sp" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="9:00"
+            android:textSize="22sp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"/>
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10:00"
+            android:textSize="22sp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"/>
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="11:00"
+            android:textSize="22sp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"/>
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="12:00"
+            android:textSize="22sp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/answerBtn4"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="次へ"
+        android:layout_marginTop="60dp"
+        android:onClick="confirm"/>
+</LinearLayout>
