@@ -2,7 +2,11 @@ package com.example.calendarapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class ConfirmActivity extends AppCompatActivity {
@@ -28,8 +32,42 @@ public class ConfirmActivity extends AppCompatActivity {
 
         cDateLabel.setText(selectedDate);
         cTimeLabel.setText(reservationTime + "～");
-        cNameLabel.setText(name);
-        cPhoneLabel.setText(phone);
-        cMailLabel.setText(email);
+        cNameLabel.setText(name + " 様");
+        cPhoneLabel.setText("電話番号： " + phone);
+        cMailLabel.setText("メールアドレス： " + email);
+
+
+        /**
+         * 予約するボタンの処理
+         */
+        // idがgoCompleteBtnのボタンを取得
+        Button goCompleteButton = (Button) findViewById(R.id.goCompleteBtn);
+        // clickイベント追加
+        goCompleteButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                //予約日時、入力内容の取得
+                String selectedDate = getIntent().getStringExtra("DATE");
+                String reservationTime = getIntent().getStringExtra("TIME");
+                String name = getIntent().getStringExtra("NAME");
+                String phone = getIntent().getStringExtra("PHONE");
+                String email = getIntent().getStringExtra("EMAIL");
+
+
+                // 完了画面(CompleteActivity)へ遷移
+                Intent intent = new Intent(getApplicationContext(), CompleteActivity.class);
+
+                intent.putExtra("NAME",name);
+                intent.putExtra("PHONE",phone);
+                intent.putExtra("EMAIL",email);
+                intent.putExtra("DATE",selectedDate);
+                intent.putExtra("TIME",reservationTime);
+
+                startActivity(intent);
+            }
+        });
+
     }
 }

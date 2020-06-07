@@ -14,7 +14,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="100dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:gravity="center_horizontal"
         android:text="時間を選択してください"
         android:textColor="@color/blueColor"
@@ -45,7 +45,7 @@
             android:text="9:00"
             android:textSize="22sp"
             android:gravity="center_horizontal"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="5dp"/>
 
         <RadioButton
             android:id="@+id/radioButton2"
@@ -81,7 +81,16 @@
         android:layout_height="60dp"
         android:text="次へ"
         android:textSize="22sp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:background="@color/colorAccent"
-        android:onClick="goToInformationInput"/>
+        />
+    <Button
+        android:id="@+id/goBackBtn1"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="戻る"
+        android:textSize="22sp"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorAccent"
+        />
 </LinearLayout>

@@ -29,6 +29,22 @@ public class TimeActivity extends AppCompatActivity {
         //予約日の取得
         String selectedDate = getIntent().getStringExtra("DATE");
 
+        //予約日が1～9日の時は頭の0を取り除く
+        String dStr = selectedDate.substring(3,5);
+        if(dStr.equals("01") || dStr.equals("02") || dStr.equals("03")  || dStr.equals("04")  || dStr.equals("05")  || dStr.equals("06")  || dStr.equals("07")  || dStr.equals("08")  || dStr.equals("09")) {
+            String dRemoved = selectedDate.substring(0,3)+ selectedDate.substring(4,6);
+            selectedDate = dRemoved;
+        }
+
+        //予約月が10,11,12月以外の時は頭の0を取り除く
+        String mStr = selectedDate.substring(0,2);
+        if(!(mStr.equals("10")) && !(mStr.equals("11")) && !(mStr.equals("12"))) {
+            String mRemoved = selectedDate.replaceFirst("0", "");
+            selectedDate = mRemoved;
+        }else{
+
+        }
+
         // 予約日をTextViewに表示する
         TextView dateLabel = findViewById(R.id.dateLabel);
         dateLabel.setText(selectedDate);
@@ -58,6 +74,23 @@ public class TimeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PersonalInformationActivity.class);
                 intent.putExtra("DATE",selectedDate);
                 intent.putExtra("TIME",timeButton.getText());
+                startActivity(intent);
+            }
+        });
+
+        /**
+         * 戻るボタンの処理
+         */
+        // idがgoNextBtnのボタンを取得
+        Button backButton1 = (Button) findViewById(R.id.goBackBtn1);
+        // clickイベント追加
+        backButton1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // 日付選択画面(MainActivity)へ遷移
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });

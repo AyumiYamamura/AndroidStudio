@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,12 +8,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/whiteColor"
-    tools:context=".ConfirmActivity">
+    tools:context=".CompleteActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="以下の内容で予約します。よろしいですか？"
+        android:text="以下の内容で予約が完了しました。"
         android:textSize="15sp"
         android:textColor="@color/blueColor"
         android:gravity="center_horizontal"
@@ -33,17 +34,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-    <TextView
-        android:id="@+id/cDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="date"
-        android:textSize="18sp"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="50dp"/>
         <TextView
-            android:id="@+id/cTime"
+            android:id="@+id/cpDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="date"
+            android:textSize="18sp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="50dp"/>
+        <TextView
+            android:id="@+id/cpTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Time"
@@ -65,7 +66,7 @@
         android:layout_marginLeft="50dp"/>
 
     <TextView
-        android:id="@+id/cName"
+        android:id="@+id/cpName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name"
@@ -75,7 +76,7 @@
         android:layout_marginLeft="50dp"/>
 
     <TextView
-        android:id="@+id/cPhone"
+        android:id="@+id/cpPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="phone"
@@ -84,7 +85,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="50dp"/>
     <TextView
-        android:id="@+id/cEmail"
+        android:id="@+id/cpEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="e-mail"
@@ -95,27 +96,9 @@
 
 
 
-    <Button
-        android:id="@+id/goCompleteBtn"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:text="予約する"
-        android:textSize="22sp"
-        android:layout_marginTop="35dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/colorAccent"
-        />
 
-        <Button
-            android:id="@+id/correctBtn"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:text="修正する"
-            android:textSize="22sp"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/colorAccent"
-            />
+
+
 
 
 </LinearLayout>
