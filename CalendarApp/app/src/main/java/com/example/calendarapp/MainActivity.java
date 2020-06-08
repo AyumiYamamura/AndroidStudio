@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Button prevButton, nextButton;
     private CalendarAdapter mCalendarAdapter;
     private GridView calendarGridView;
+    private DateManager dateManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
         Log.d("position",String.valueOf(position));
         Log.d("date", mCalendarAdapter.getItem(position).toString());
 
@@ -69,10 +69,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM月dd日", Locale.US);
         String currentDateString = dateFormat.format(mCalendarAdapter.getItem(position));
 
+
         // 時間選択画面（TimeActivity）へ遷移
         Intent intent = new Intent(getApplicationContext(), TimeActivity.class);
         intent.putExtra("DATE",currentDateString);
+
         startActivity(intent);
+
 
     }
 }

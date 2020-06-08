@@ -99,6 +99,7 @@ public class CalendarAdapter extends BaseAdapter {
             return dateArray.get(position);
         }
 
+
     //表示月を取得
     public String getTitle(){
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM",Locale.US);
