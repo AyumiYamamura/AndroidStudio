@@ -18,6 +18,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * 時間選択画面
+ */
 public class TimeActivity extends AppCompatActivity {
     private RadioGroup timeGroup;
 
@@ -32,7 +35,7 @@ public class TimeActivity extends AppCompatActivity {
         //予約日が1～9日の時は頭の0を取り除く
         String dStr = selectedDate.substring(3,5);
         if(dStr.equals("01") || dStr.equals("02") || dStr.equals("03")  || dStr.equals("04")  || dStr.equals("05")  || dStr.equals("06")  || dStr.equals("07")  || dStr.equals("08")  || dStr.equals("09")) {
-            String dRemoved = selectedDate.substring(0,3)+ selectedDate.substring(4,6);
+            String dRemoved = selectedDate.substring(0,3)+ selectedDate.substring(4,9);
             selectedDate = dRemoved;
         }
 
@@ -68,7 +71,8 @@ public class TimeActivity extends AppCompatActivity {
                 RadioButton timeButton = (RadioButton) findViewById(checkedId);
 
                 //予約日の取得
-                String selectedDate = getIntent().getStringExtra("DATE");
+                TextView txt1 = (TextView) findViewById(R.id.dateLabel);
+                String selectedDate = txt1.getText().toString();
 
                 // 個人情報入力画面(PersonalInformationActivity)へ遷移
                 Intent intent = new Intent(getApplicationContext(), PersonalInformationActivity.class);
@@ -88,10 +92,8 @@ public class TimeActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
                 // 日付選択画面(MainActivity)へ遷移
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 

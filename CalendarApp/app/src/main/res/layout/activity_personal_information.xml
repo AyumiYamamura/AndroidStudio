@@ -73,13 +73,23 @@
     <Button
         android:id="@+id/goConfirmBtn"
         android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:text="確認画面へ"
         android:textSize="22sp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         android:background="@color/colorAccent"
         />
 
+    <Button
+        android:id="@+id/goBackBtn2"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="戻る"
+        android:textSize="22sp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorAccent"
+        />
 
 </LinearLayout>

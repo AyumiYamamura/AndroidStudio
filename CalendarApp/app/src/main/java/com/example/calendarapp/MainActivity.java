@@ -18,6 +18,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * 日付選択画面
+ */
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private TextView titleText;
@@ -65,17 +68,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Log.d("position",String.valueOf(position));
         Log.d("date", mCalendarAdapter.getItem(position).toString());
 
-        //予約日のフォーマットを"MM月dd日"に直す
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM月dd日", Locale.US);
+        //予約日のフォーマットを"MM月dd日(E)"に直す
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM月dd日(E)", Locale.JAPANESE);
         String currentDateString = dateFormat.format(mCalendarAdapter.getItem(position));
-
 
         // 時間選択画面（TimeActivity）へ遷移
         Intent intent = new Intent(getApplicationContext(), TimeActivity.class);
         intent.putExtra("DATE",currentDateString);
 
         startActivity(intent);
-
 
     }
 }

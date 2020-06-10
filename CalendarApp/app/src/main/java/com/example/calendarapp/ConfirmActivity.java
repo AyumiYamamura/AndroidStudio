@@ -69,5 +69,36 @@ public class ConfirmActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * 修正するボタンの処理
+         */
+        // idがcorrectBtnのボタンを取得
+        Button correctButton = (Button) findViewById(R.id.correctBtn);
+        // clickイベント追加
+        correctButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                //予約日時、入力内容の取得
+                String selectedDate = getIntent().getStringExtra("DATE");
+                String reservationTime = getIntent().getStringExtra("TIME");
+                String name = getIntent().getStringExtra("NAME");
+                String phone = getIntent().getStringExtra("PHONE");
+                String email = getIntent().getStringExtra("EMAIL");
+
+                // 個人情報入力画面(PersonalInformationActivity)へ遷移
+                Intent intent = new Intent(getApplicationContext(), PersonalInformationActivity.class);
+
+                intent.putExtra("NAME",name);
+                intent.putExtra("PHONE",phone);
+                intent.putExtra("EMAIL",email);
+                intent.putExtra("DATE",selectedDate);
+                intent.putExtra("TIME",reservationTime);
+
+                startActivity(intent);
+            }
+        });
+
     }
 }

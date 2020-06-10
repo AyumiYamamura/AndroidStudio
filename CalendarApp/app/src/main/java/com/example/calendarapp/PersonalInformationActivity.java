@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+/**
+ * 個人情報入力画面
+ */
 public class PersonalInformationActivity extends AppCompatActivity {
 
     //private AppCompatEditText name;
@@ -65,7 +68,29 @@ public class PersonalInformationActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * 戻るボタンの処理
+         */
+        // idがgoBackBtn2のボタンを取得
+        Button backButton2 = (Button) findViewById(R.id.goBackBtn2);
+        // clickイベント追加
+        backButton2.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+
+                //予約日の取得
+                String selectedDate = getIntent().getStringExtra("DATE");
+
+                // 時間選択画面(TimeActivity)へ遷移
+                Intent intent = new Intent(getApplicationContext(), TimeActivity.class);
+
+
+                intent.putExtra("DATE",selectedDate);
+
+                startActivity(intent);
+            }
+        });
 
     }
 }
