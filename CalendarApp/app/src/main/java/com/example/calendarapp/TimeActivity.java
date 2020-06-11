@@ -24,6 +24,7 @@ import java.util.Locale;
 public class TimeActivity extends AppCompatActivity {
     private RadioGroup timeGroup;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +79,7 @@ public class TimeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PersonalInformationActivity.class);
                 intent.putExtra("DATE",selectedDate);
                 intent.putExtra("TIME",timeButton.getText());
+
                 startActivity(intent);
             }
         });
@@ -96,6 +98,8 @@ public class TimeActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
+
+
+
 }

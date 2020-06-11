@@ -16,9 +16,12 @@ import android.widget.TextView;
  */
 public class PersonalInformationActivity extends AppCompatActivity {
 
-    //private AppCompatEditText name;
-    //private AppCompatEditText phoneNumber;
-    //private AppCompatEditText email;
+    private EditText name;
+    private EditText phoneNumber;
+    private EditText email;
+
+    //リクエストコードを設定
+    static final int RESULT_CONFIRM = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +44,29 @@ public class PersonalInformationActivity extends AppCompatActivity {
 
                 //予約時間の取得
                 String reservationTime = getIntent().getStringExtra("TIME");
-                //TextView dateLabel = findViewById(R.id.dateLabel);
-
-                // 予約時間をTextViewに表示する
-                // dateLabel.setText(selectedDate);
 
                 //フォーム入力内容の取得
-                EditText name = (EditText) findViewById(R.id.editText1);
-                EditText phoneNumber = (EditText) findViewById(R.id.editText2);
-                EditText email = (EditText) findViewById(R.id.editText3);
+                name = (EditText) findViewById(R.id.editText1);
+                phoneNumber = (EditText) findViewById(R.id.editText2);
+                email = (EditText) findViewById(R.id.editText3);
 
                 String text1 = name.getText().toString();
                 String text2 = phoneNumber.getText().toString();
                 String text3 = email.getText().toString();
+
+                //必須入力チェック
+                if(text1.isEmpty()) {
+                    name.setError("名前が入力されていません");
+                    return;
+                }
+                if(text2.isEmpty()) {
+                    phoneNumber.setError("電話番号が入力されていません");
+                    return;
+                }
+                if(text3.isEmpty()) {
+                    email.setError("メールアドレスが入力されていません");
+                    return;
+                }
 
                 // 確認画面(ConfirmActivity)へ遷移
                 Intent intent = new Intent(getApplicationContext(), ConfirmActivity.class);
@@ -64,7 +77,7 @@ public class PersonalInformationActivity extends AppCompatActivity {
                 intent.putExtra("DATE",selectedDate);
                 intent.putExtra("TIME",reservationTime);
 
-                startActivity(intent);
+                startActivityForResult(intent,RESULT_CONFIRM);
             }
         });
 
@@ -78,19 +91,32 @@ public class PersonalInformationActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
-                //予約日の取得
-                String selectedDate = getIntent().getStringExtra("DATE");
-
                 // 時間選択画面(TimeActivity)へ遷移
-                Intent intent = new Intent(getApplicationContext(), TimeActivity.class);
-
-
-                intent.putExtra("DATE",selectedDate);
-
-                startActivity(intent);
+                finish();
             }
         });
 
     }
+
+    /**
+     * 確認画面(ConfirmActivity)で修正ボタンが押されたときの処理
+     */
+    protected void onActivityResult( int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if(resultCode == RESULT_OK && requestCode == RESULT_CONFIRM &&
+                null != intent) {
+
+            // ConfirmActivity からの返しの結果を受け取る
+            String resName = intent.getStringExtra("NAME");
+            String resPhone = intent.getStringExtra("PHONE");
+            String resMail = intent.getStringExtra("EMAIL");
+
+            //受け取った値をEditViewにセット
+            name.setText(resName);
+            phoneNumber.setText(resPhone);
+            email.setText(resMail);
+        }
+    }
+
 }

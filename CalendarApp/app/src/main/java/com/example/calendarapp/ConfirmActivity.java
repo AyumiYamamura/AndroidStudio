@@ -81,8 +81,8 @@ public class ConfirmActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //予約日時、入力内容の取得
-                String selectedDate = getIntent().getStringExtra("DATE");
-                String reservationTime = getIntent().getStringExtra("TIME");
+               // String selectedDate = getIntent().getStringExtra("DATE");
+               // String reservationTime = getIntent().getStringExtra("TIME");
                 String name = getIntent().getStringExtra("NAME");
                 String phone = getIntent().getStringExtra("PHONE");
                 String email = getIntent().getStringExtra("EMAIL");
@@ -93,10 +93,10 @@ public class ConfirmActivity extends AppCompatActivity {
                 intent.putExtra("NAME",name);
                 intent.putExtra("PHONE",phone);
                 intent.putExtra("EMAIL",email);
-                intent.putExtra("DATE",selectedDate);
-                intent.putExtra("TIME",reservationTime);
 
-                startActivity(intent);
+                setResult(RESULT_OK, intent);
+
+                finish();
             }
         });
 

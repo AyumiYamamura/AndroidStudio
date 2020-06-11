@@ -28,6 +28,7 @@
 
     <EditText
         android:id="@+id/editText1"
+        android:hint="山田　花子"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -46,6 +47,7 @@
 
     <EditText
         android:id="@+id/editText2"
+        android:hint="09011112222"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -63,6 +65,7 @@
 
     <EditText
         android:id="@+id/editText3"
+        android:hint="abc.com"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
