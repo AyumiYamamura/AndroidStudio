@@ -45,6 +45,9 @@ public class PersonalInformationActivity extends AppCompatActivity {
                 //予約時間の取得
                 String reservationTime = getIntent().getStringExtra("TIME");
 
+                //登録用予約年月日の取得
+                String re_date = getIntent().getStringExtra("RESERVATION");
+
                 //フォーム入力内容の取得
                 name = (EditText) findViewById(R.id.editText1);
                 phoneNumber = (EditText) findViewById(R.id.editText2);
@@ -76,6 +79,7 @@ public class PersonalInformationActivity extends AppCompatActivity {
                 intent.putExtra("EMAIL",text3);
                 intent.putExtra("DATE",selectedDate);
                 intent.putExtra("TIME",reservationTime);
+                intent.putExtra("RESERVATION",re_date);
 
                 startActivityForResult(intent,RESULT_CONFIRM);
             }

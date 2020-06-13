@@ -23,8 +23,7 @@ public class ConfirmActivity extends AppCompatActivity {
 
     //ReserveOpenHelperクラスを定義する
     ReserveOpenHelper reserveOpenHelper = null;
-    // id
-    String id = "";
+    String re_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +36,9 @@ public class ConfirmActivity extends AppCompatActivity {
         if(reserveOpenHelper == null){
             reserveOpenHelper = new ReserveOpenHelper(ConfirmActivity.this);
         }
+
+        //登録用予約年月日の取得
+        re_date = getIntent().getStringExtra("RESERVATION");
 
         //予約日時、入力内容の取得
         String selectedDate = getIntent().getStringExtra("DATE");
@@ -52,7 +54,7 @@ public class ConfirmActivity extends AppCompatActivity {
         TextView cPhoneLabel = findViewById(R.id.cPhone);
         TextView cMailLabel = findViewById(R.id.cEmail);
 
-        cDateLabel.setText(selectedDate);
+        cDateLabel.setText(re_date.substring(0, 4) + "年" +selectedDate);
         cTimeLabel.setText(reservationTime + "～");
         cNameLabel.setText(name + " 様");
         cPhoneLabel.setText("電話番号： " + phone);
@@ -88,10 +90,8 @@ public class ConfirmActivity extends AppCompatActivity {
 
                 //新規予約のレコードを作成
                 try {
-                    // 新しくidを発行
-                    id = UUID.randomUUID().toString();
 
-                    db.execSQL("insert into RESERVATION_TABLE(id, name,r_date,r_time,phone,mail,send_flag,delete_flag,created_date,deleted_date) VALUES('" + id + "', '" + name + "', '" + selectedDate + "', '" + reservationTime + "', '" + phone + "', '" + email + "', 0,0,'" + redf.format(r_now) + "', '" + redf.format(r_now) + "')");
+                    db.execSQL("insert into RESERVATION_TABLE(name,r_date,r_time,phone,mail,send_flag,delete_flag,created_date,deleted_date) VALUES('" +  name + "', '" + re_date + "', '" + reservationTime + "', '" + phone + "', '" + email + "', 0,0,'" + redf.format(r_now) + "', '" + redf.format(r_now) + "')");
                 } catch (SQLException e) {
                     Log.e("ERROR", e.toString());
                 }finally {
@@ -106,6 +106,7 @@ public class ConfirmActivity extends AppCompatActivity {
                 intent.putExtra("EMAIL",email);
                 intent.putExtra("DATE",selectedDate);
                 intent.putExtra("TIME",reservationTime);
+                intent.putExtra("RESERVATION",re_date);
 
                 startActivity(intent);
             }

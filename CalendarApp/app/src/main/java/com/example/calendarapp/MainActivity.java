@@ -72,9 +72,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM月dd日(E)", Locale.JAPANESE);
         String currentDateString = dateFormat.format(mCalendarAdapter.getItem(position));
 
+        //登録用の予約年月日を取得
+        SimpleDateFormat reservationFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.JAPANESE);
+        String reservation = reservationFormat.format(mCalendarAdapter.getItem(position));
+
         // 時間選択画面（TimeActivity）へ遷移
         Intent intent = new Intent(getApplicationContext(), TimeActivity.class);
         intent.putExtra("DATE",currentDateString);
+        intent.putExtra("RESERVATION",reservation);
 
         startActivity(intent);
 

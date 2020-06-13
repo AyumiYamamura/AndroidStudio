@@ -56,6 +56,9 @@ public class TimeActivity extends AppCompatActivity {
         // RadioGroupをメンバ変数に保存しておく
         timeGroup = (RadioGroup)findViewById(R.id.timeGroup);
 
+
+
+
     /**
      * 次へボタンの処理
      */
@@ -75,10 +78,14 @@ public class TimeActivity extends AppCompatActivity {
                 TextView txt1 = (TextView) findViewById(R.id.dateLabel);
                 String selectedDate = txt1.getText().toString();
 
+                //登録用予約年月日の取得
+                String re_date = getIntent().getStringExtra("RESERVATION");
+
                 // 個人情報入力画面(PersonalInformationActivity)へ遷移
                 Intent intent = new Intent(getApplicationContext(), PersonalInformationActivity.class);
                 intent.putExtra("DATE",selectedDate);
                 intent.putExtra("TIME",timeButton.getText());
+                intent.putExtra("RESERVATION",re_date);
 
                 startActivity(intent);
             }

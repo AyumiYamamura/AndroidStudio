@@ -26,7 +26,11 @@ public class CompleteActivity extends AppCompatActivity {
         TextView cpPhoneLabel = findViewById(R.id.cpPhone);
         TextView cpMailLabel = findViewById(R.id.cpEmail);
 
-        cpDateLabel.setText(selectedDate);
+        //登録用予約年月日の取得
+        String re_date = getIntent().getStringExtra("RESERVATION");
+
+
+        cpDateLabel.setText(re_date.substring(0, 4) + "年" + selectedDate);
         cpTimeLabel.setText(reservationTime + "～");
         cpNameLabel.setText(name + " 様");
         cpPhoneLabel.setText("電話番号： " + phone);

@@ -4,7 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class ReserveOpenHelper extends SQLiteOpenHelper {
-    // データベース自体の名前
+    // データベースの名前
     static final private String DBName = "RESERVATION_DB";
     // データベースのバージョン
     static final private int VERSION = 1;
