@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -23,14 +24,12 @@ public class ConfirmActivity extends AppCompatActivity {
 
     //ReserveOpenHelperクラスを定義する
     ReserveOpenHelper reserveOpenHelper = null;
-    String re_date;
+    private String re_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm);
-
-
 
         // データベースから値を取得する
         if(reserveOpenHelper == null){
@@ -82,11 +81,9 @@ public class ConfirmActivity extends AppCompatActivity {
                 // データベースを取得
                 SQLiteDatabase db = reserveOpenHelper.getWritableDatabase();
 
-
                 //現在日時をyyyy/MM/dd HH:mm:ss形式で取得する
                 final DateFormat redf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 final Date r_now = new Date(System.currentTimeMillis());
-
 
                 //新規予約のレコードを作成
                 try {

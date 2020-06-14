@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.TextViewCompat;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -23,12 +26,23 @@ import java.util.Locale;
  */
 public class TimeActivity extends AppCompatActivity {
     private RadioGroup timeGroup;
+    private String re_date;
+    //ReserveOpenHelperクラスを定義する
+    ReserveOpenHelper reserveOpenHelper = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time);
+
+        // データベースから値を取得する
+        if(reserveOpenHelper == null){
+            reserveOpenHelper = new ReserveOpenHelper(TimeActivity.this);
+        }
+
+        //登録用予約年月日の取得
+        re_date = getIntent().getStringExtra("RESERVATION");
 
         //予約日の取得
         String selectedDate = getIntent().getStringExtra("DATE");
@@ -56,8 +70,43 @@ public class TimeActivity extends AppCompatActivity {
         // RadioGroupをメンバ変数に保存しておく
         timeGroup = (RadioGroup)findViewById(R.id.timeGroup);
 
+        // RadioButtonをメンバ変数に保存しておく
+        RadioButton nine = (RadioButton) findViewById(R.id.radioButton);
+        RadioButton ten = (RadioButton) findViewById(R.id.radioButton2);
+        RadioButton eleven = (RadioButton) findViewById(R.id.radioButton3);
+        RadioButton twelve = (RadioButton) findViewById(R.id.radioButton4);
 
+        // データベースを取得
+        SQLiteDatabase db = reserveOpenHelper.getReadableDatabase();
+        try {
+            // rawQueryでデータを取得する
+            Cursor c = db.rawQuery("SELECT r_time FROM RESERVATION_TABLE WHERE r_date = '"+ re_date +"' AND delete_flag = 0", null);
+            // Cursorの先頭行があるかどうか確認
+            boolean next = c.moveToFirst();
+            // 取得した全ての行を取得
+            while (next) {
+                //予約が埋まっている時間を取得する
+                String dispTime = c.getString(0);
 
+                // 予約が埋まっている時間のラジオボタンは無効にする
+                if(dispTime.equals(nine.getText().toString())){
+                    nine.setEnabled(false);
+                }
+                if(dispTime.equals(ten.getText().toString())){
+                    ten.setEnabled(false);
+                }
+                if(dispTime.equals(eleven.getText().toString())){
+                    eleven.setEnabled(false);
+                }
+                if(dispTime.equals(twelve.getText().toString())){
+                    twelve.setEnabled(false);
+                }
+
+                next = c.moveToNext();
+            }
+        } finally {
+            db.close();
+        }
 
     /**
      * 次へボタンの処理
@@ -77,9 +126,6 @@ public class TimeActivity extends AppCompatActivity {
                 //予約日の取得
                 TextView txt1 = (TextView) findViewById(R.id.dateLabel);
                 String selectedDate = txt1.getText().toString();
-
-                //登録用予約年月日の取得
-                String re_date = getIntent().getStringExtra("RESERVATION");
 
                 // 個人情報入力画面(PersonalInformationActivity)へ遷移
                 Intent intent = new Intent(getApplicationContext(), PersonalInformationActivity.class);

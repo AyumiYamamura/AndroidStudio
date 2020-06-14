@@ -1,8 +1,10 @@
 package com.example.calendarapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.os.Bundle;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -67,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         Log.d("position",String.valueOf(position));
         Log.d("date", mCalendarAdapter.getItem(position).toString());
+
+
 
         //予約日のフォーマットを"MM月dd日(E)"に直す
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM月dd日(E)", Locale.JAPANESE);

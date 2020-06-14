@@ -71,6 +71,8 @@ public class CalendarAdapter extends BaseAdapter {
             convertView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.grayColor));
         }
 
+
+
         //過去日のセル(背景色）をグレーアウト
         if(compA.before(compB)){
         convertView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.grayColor));
