@@ -2,6 +2,7 @@ package com.example.calendarapp;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +26,11 @@ public class CalendarAdapter extends BaseAdapter {
     private LayoutInflater mLayoutInflater;
 
     //カスタムセルを拡張したらここでWigetを定義
-    private  static  class  ViewHolder {
+    private static class ViewHolder {
         public TextView dateText;
     }
 
-    public CalendarAdapter(Context context){
+    public CalendarAdapter(Context context) {
         mContext = context;
         mLayoutInflater = LayoutInflater.from(mContext);
         mDateManager = new DateManager();
@@ -37,7 +38,7 @@ public class CalendarAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount(){
+    public int getCount() {
         return dateArray.size();
     }
 
@@ -50,32 +51,31 @@ public class CalendarAdapter extends BaseAdapter {
             holder.dateText = convertView.findViewById(R.id.dateText);
             convertView.setTag(holder);
         } else {
-            holder = (ViewHolder)convertView.getTag();
+            holder = (ViewHolder) convertView.getTag();
         }
 
         //セルのサイズを指定
         float dp = mContext.getResources().getDisplayMetrics().density;
-        AbsListView.LayoutParams params = new AbsListView.LayoutParams(parent.getWidth()/7 - (int)dp, (parent.getHeight() - (int)dp * mDateManager.getWeeks() ) / mDateManager.getWeeks());
+        AbsListView.LayoutParams params = new AbsListView.LayoutParams(parent.getWidth() / 7 - (int) dp, (parent.getHeight() - (int) dp * mDateManager.getWeeks()) / mDateManager.getWeeks());
         convertView.setLayoutParams(params);
 
         //日付のみ表示させる
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d",Locale.US);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d", Locale.US);
         holder.dateText.setText(dateFormat.format(dateArray.get(position)));
 
         //当月以外のセル(背景色）をグレーアウト
         Date compA = dateArray.get(position);
         Date compB = new Date();
-        if(mDateManager.isCurrentMonth(compA)){
+        if (mDateManager.isCurrentMonth(compA)) {
             convertView.setBackgroundColor(Color.WHITE);
-        }else{
+        } else {
             convertView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.grayColor));
         }
 
 
-
         //過去日のセル(背景色）をグレーアウト
-        if(compA.before(compB)){
-        convertView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.grayColor));
+        if (compA.before(compB)) {
+            convertView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.grayColor));
         }
 
         //当日のセル(背景色）を赤色に
@@ -85,7 +85,7 @@ public class CalendarAdapter extends BaseAdapter {
 
         //日曜日を赤、土曜日を青に
         int colorId;
-        switch (mDateManager.getDayOfWeek(dateArray.get(position))){
+        switch (mDateManager.getDayOfWeek(dateArray.get(position))) {
             case 1:
                 colorId = Color.RED;
                 break;
@@ -95,32 +95,32 @@ public class CalendarAdapter extends BaseAdapter {
                 break;
 
             default:
-                colorId =Color.BLACK;
+                colorId = Color.BLACK;
                 break;
         }
         holder.dateText.setTextColor(colorId);
 
         return convertView;
-        }
+    }
 
-        @Override
-        public long getItemId(int position){
-            return position;
-        }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
-        @Override
-        public Object getItem(int position){
-            return dateArray.get(position);
-        }
+    @Override
+    public Object getItem(int position) {
+        return dateArray.get(position);
+    }
 
     //表示月を取得
-    public String getTitle(){
-        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM",Locale.US);
+    public String getTitle() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM", Locale.US);
         return format.format(mDateManager.mCalendar.getTime());
     }
 
     //翌月表示
-    public void nextMonth(){
+    public void nextMonth() {
         mDateManager.nextMonth();
         dateArray = mDateManager.getDays();
         //更新
@@ -128,10 +128,19 @@ public class CalendarAdapter extends BaseAdapter {
     }
 
     //前月表示
-    public void prevMonth(){
+    public void prevMonth() {
         mDateManager.prevMonth();
         dateArray = mDateManager.getDays();
         //更新
         this.notifyDataSetChanged();
     }
+
+    //背景色取得
+    public int getBackground(View convertView) {
+        ColorDrawable colorDrawable = (ColorDrawable) convertView.getBackground();
+        int colorInt = colorDrawable.getColor();
+       // int color = ContextCompat.getColor(mContext, R.color.grayColor);
+        return colorInt;
+    }
+
 }

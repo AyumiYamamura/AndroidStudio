@@ -86,26 +86,36 @@ public class TimeActivity extends AppCompatActivity {
             // 取得した全ての行を取得
             while (next) {
                 //予約が埋まっている時間を取得する
-                String dispTime = c.getString(0);
+                String hideTime = c.getString(0);
 
                 // 予約が埋まっている時間のラジオボタンは無効にする
-                if(dispTime.equals(nine.getText().toString())){
+                if(hideTime.equals(nine.getText().toString())){
                     nine.setEnabled(false);
                 }
-                if(dispTime.equals(ten.getText().toString())){
+                if(hideTime.equals(ten.getText().toString())){
                     ten.setEnabled(false);
                 }
-                if(dispTime.equals(eleven.getText().toString())){
+                if(hideTime.equals(eleven.getText().toString())){
                     eleven.setEnabled(false);
                 }
-                if(dispTime.equals(twelve.getText().toString())){
+                if(hideTime.equals(twelve.getText().toString())){
                     twelve.setEnabled(false);
                 }
-
                 next = c.moveToNext();
             }
         } finally {
             db.close();
+        }
+
+        //ラジオボタンのデフォルト選択ボタンを設定
+        if(nine.isEnabled()==true){
+            timeGroup.check(R.id.radioButton);
+        }else if(ten.isEnabled()==true){
+            timeGroup.check(R.id.radioButton2);
+        }else if(eleven.isEnabled()==true){
+            timeGroup.check(R.id.radioButton3);
+        }else if(twelve.isEnabled()==true){
+            timeGroup.check(R.id.radioButton4);
         }
 
     /**
@@ -122,6 +132,7 @@ public class TimeActivity extends AppCompatActivity {
                 // 選択されたラジオボタンを取得
                 int checkedId = timeGroup.getCheckedRadioButtonId();
                 RadioButton timeButton = (RadioButton) findViewById(checkedId);
+
 
                 //予約日の取得
                 TextView txt1 = (TextView) findViewById(R.id.dateLabel);
