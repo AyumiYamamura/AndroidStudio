@@ -63,15 +63,15 @@ public class CalendarAdapter extends BaseAdapter {
         SimpleDateFormat dateFormat = new SimpleDateFormat("d", Locale.US);
         holder.dateText.setText(dateFormat.format(dateArray.get(position)));
 
-        //当月以外のセル(背景色）をグレーアウト
+        //当月以外のセル(背景色）をグレーアウトしてテキストに空文字をセット
         Date compA = dateArray.get(position);
         Date compB = new Date();
         if (mDateManager.isCurrentMonth(compA)) {
             convertView.setBackgroundColor(Color.WHITE);
         } else {
             convertView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.grayColor));
+            holder.dateText.setText("");
         }
-
 
         //過去日のセル(背景色）をグレーアウト
         if (compA.before(compB)) {
@@ -90,7 +90,7 @@ public class CalendarAdapter extends BaseAdapter {
                 colorId = Color.RED;
                 break;
 
-            case 2:
+            case 7:
                 colorId = Color.BLUE;
                 break;
 
@@ -139,7 +139,7 @@ public class CalendarAdapter extends BaseAdapter {
     public int getBackground(View convertView) {
         ColorDrawable colorDrawable = (ColorDrawable) convertView.getBackground();
         int colorInt = colorDrawable.getColor();
-       // int color = ContextCompat.getColor(mContext, R.color.grayColor);
+        //  int color = ContextCompat.getColor(mContext, R.color.grayColor);
         return colorInt;
     }
 
