@@ -41,7 +41,7 @@ class CreateKotlinMemo : AppCompatActivity() {
             val db = helper!!.writableDatabase
             try {
                 // rawQueryというSELECT専用メソッドを使用してデータを取得する
-                val c = db.rawQuery("select body from MEMO_TABLE where uuid = '$id'", null)
+                val c = db.rawQuery("select body from KT_MEMO_TABLE where uuid = '$id'", null)
                 // Cursorの先頭行があるかどうか確認
                 var next = c.moveToFirst()
                 // 取得した全ての行を取得

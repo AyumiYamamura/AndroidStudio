@@ -85,7 +85,6 @@ internal var helper: KtOpenHelper? = null
             startActivity(intent)
         }
 
-
         /**
          * 新規作成するボタン処理
          */
