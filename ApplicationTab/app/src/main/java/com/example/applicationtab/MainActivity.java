@@ -33,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-        //アイコンのセット
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //Upボタン無効
         if(getSupportActionBar() != null){
             ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(false);
@@ -55,11 +56,12 @@ public class MainActivity extends AppCompatActivity {
        //     }
        // });
         tabLayout = (TabLayout) findViewById(R.id.tabs);
+        //スワイプを可能にする
         tabLayout.setupWithViewPager(viewPager);
-
+        //タブアイコンのセット
         setUpTabIcon();
     }
-
+    //タブアイコンのセット
     private void setUpTabIcon(){
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
