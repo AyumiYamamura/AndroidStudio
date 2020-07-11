@@ -1,4 +1,7 @@
 package com.example.applicationtab;
 
-public class Flag01 {
+import androidx.fragment.app.Fragment;
+
+public class Flag01 extends Fragment {
+    
 }
