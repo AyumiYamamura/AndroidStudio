@@ -20,8 +20,10 @@ public class PageViewModel extends ViewModel {
             Log.i(TAG,"input:"+input);
             if(input == 1){
                 return "tab1";
-            }else {
+            }else if(input == 2) {
                 return  "tab2";
+            }else {
+                return  "tab3";
             }
         }
     });
