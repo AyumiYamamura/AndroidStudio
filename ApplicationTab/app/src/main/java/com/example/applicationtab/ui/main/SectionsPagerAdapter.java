@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.applicationtab.Flag01;
+import com.example.applicationtab.Flag02;
+import com.example.applicationtab.Flag03;
 import com.example.applicationtab.R;
 
 /**
@@ -29,11 +32,25 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         mContext = context;
     }
 
+    //タブごとの画面切り替え
     @Override
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
+       // return PlaceholderFragment.newInstance(position + 1);
+        Fragment fragment = null;
+        switch (position){
+            case 0:
+                fragment = new Flag01();
+                break;
+            case 1:
+                fragment = new Flag02();
+                break;
+            case 2:
+                fragment = new Flag03();
+                break;
+        }
+        return fragment;
     }
 
     @Nullable

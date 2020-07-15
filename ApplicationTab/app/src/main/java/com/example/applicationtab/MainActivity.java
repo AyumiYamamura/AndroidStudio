@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private int[] tabIcons ={
             R.drawable.ic_action_home,
-            R.drawable.ic_action_info
+            R.drawable.ic_action_info,
+            R.drawable.ic_action_more
     };
 
     @Override
@@ -65,5 +66,6 @@ public class MainActivity extends AppCompatActivity {
     private void setUpTabIcon(){
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
     }
 }

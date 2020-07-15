@@ -2,5 +2,5 @@
     <string name="app_name">ApplicationTab</string>
     <string name="tab_text_1">HOME</string>
     <string name="tab_text_2">INFO</string>
-    <string name="tab_text_3">Tab 3</string>
+    <string name="tab_text_3">MORE</string>
 </resources>
