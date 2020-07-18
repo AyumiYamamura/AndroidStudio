@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+    <ListView
+        android:id="@+id/listView"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="4dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="INFO"
-        android:textSize="60dp"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content" />
+</RelativeLayout>
