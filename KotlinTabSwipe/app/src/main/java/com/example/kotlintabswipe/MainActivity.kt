@@ -10,22 +10,38 @@ import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import com.example.kotlintabswipe.ui.main.SectionsPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
+
+    //タブアイコン
+    val tabIcons = arrayOf(
+        R.drawable.ic_action_home,
+        R.drawable.ic_action_news,
+        R.drawable.ic_action_more
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+
+        //アイコンのセットに使う
+        val tabs: TabLayout = findViewById(R.id.tabs)
+
         //タブで利用するFragmentのリストを作成
         val tabsFragments = arrayListOf(
             Tab1Fragment::class.java,
             Tab2Fragment::class.java,
             Tab3Fragment::class.java
         )
+
         //Adapterの生成
         val mTabsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, tabsFragments)
         // ViewPagerにAdapterを設定
@@ -45,6 +61,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
+        //タブアイコンのセット
+        setUpTabIcon()
     }
     //ステータスバー、アクションバー、タブの色変更
     private fun changeColor(color : Int) {
@@ -54,6 +72,13 @@ class MainActivity : AppCompatActivity() {
         tabs.setBackgroundColor(color)
         toolbar.setBackgroundColor(color)
     }
+    //タブアイコンのセット
+    private fun setUpTabIcon(){
+        tabs.getTabAt(0)?.setIcon(tabIcons[0])
+        tabs.getTabAt(1)?.setIcon(tabIcons[1])
+        tabs.getTabAt(2)?.setIcon(tabIcons[2])
+    }
+
     //override fun onCreateOptionsMenu(menu: Menu): Boolean {
        // menuInflater.inflate(R.menu.menu_main, menu)
        // return true
