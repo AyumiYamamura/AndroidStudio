@@ -19,11 +19,11 @@ class Tab2Fragment : Fragment() {
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-// Inflate the layout for this fragment
+        // Inflate the layout for this fragment
         val mainFrame = inflater!!.inflate(R.layout.flagment_tab2, container, false)
         val listView = mainFrame.findViewById(R.id.listView) as ListView
-        val dataArray = arrayOf("kotlin", "Android", "Swift", "iOS")
-        val adapter = ArrayAdapter<String>(this.context, android.R.layout.simple_list_item_1, dataArray)
+        val dataArray = arrayOf("News1", "News2", "News3", "News4")
+        val adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, dataArray)
         listView.adapter  = adapter
         return mainFrame
        // return inflater!!.inflate(R.layout.flagment_tab2, container, false)
@@ -41,18 +41,5 @@ class Tab2Fragment : Fragment() {
         }
     }
 
-
-  //  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-     //   super.onViewCreated(view, savedInstanceState)
-       // val titles = arrayListOf("Mac", "Apple", "Mini", "iMac", "Pro")
-        // xmlにて実装したListViewの取得
-      //  val listView = findViewById<ListView>(R.id.listView)
-
-      //  val adapter = ArrayAdapter<String>(this.context, android.R.layout.simple_list_item_1, titles)
-      //  listView.adapter = adapter
-       // val view = inflater.inflate(R.layout.fragment_1, container, false)
-
-        //return view
-   // }
 
 }
