@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Tab3Fragment">
-    <TextView
+    <ListView
+        android:id="@+id/listViewMore"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="MORE"
-        android:textSize="100dp"/>
+        android:layout_height="match_parent"/>
 </FrameLayout>
